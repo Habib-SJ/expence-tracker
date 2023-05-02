@@ -48,17 +48,19 @@ while True:
             for expenses in expenses:
                 print(expenses)
         if view_choice == 2:
-            cur.execute("""SELECT category, SUM(price) FROM expenses WHERE strftime('%m', Date )"= ? AND 
+            month = input("Enter the month(MM): ")
+            year = input("Enter the year(YYYY):")
+            cur.execute("""SELECT category, SUM(price) FROM expenses WHERE strftime('%m', Date )= ? AND 
             strftime('%Y', Date) = ?
-            GROUP BY category""", (month, Year))
+            GROUP BY category""", (month, year))
         expenses = cur.fetchall()
         for expense in expenses:
             print(f"Category: {expense[0]}, Total: {expense[1]}")
         else:
             exit()
 
-    else:
-        exit()
+    #else:
+    #    exit()
     repeat = input("Would you like to do something else (y/n)? \n")
     if repeat.lower() != "y":
         break
